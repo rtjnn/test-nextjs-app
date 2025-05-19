@@ -105,7 +105,7 @@ export default function Home() {
               helps augment innovation.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-5xl">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full mx-auto px-4">
               {[
                 {
                   label: "Successful Projects",
