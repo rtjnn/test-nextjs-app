@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
+import type { ISourceOptions, MoveDirection } from "@tsparticles/engine";
 
 const ParticlesBackground = ({ id = "tsparticles" }: { id?: string }) => {
   const [engineReady, setEngineReady] = useState(false);
@@ -22,7 +23,7 @@ const ParticlesBackground = ({ id = "tsparticles" }: { id?: string }) => {
   };
 
   // Konfigurasi partikel
-  const options = useMemo(() => ({
+  const options: ISourceOptions = {
     background: {
       color: {
         value: "#131022",
@@ -39,7 +40,9 @@ const ParticlesBackground = ({ id = "tsparticles" }: { id?: string }) => {
           enable: true,
           mode: "grab",
         },
-        resize: true,
+        resize: {
+          enable: true,
+        },
       },
       modes: {
         repulse: {
@@ -65,7 +68,7 @@ const ParticlesBackground = ({ id = "tsparticles" }: { id?: string }) => {
         width: 1,
       },
       move: {
-        direction: "none",
+        direction: "none" as MoveDirection,
         enable: true,
         outModes: {
           default: "bounce",
@@ -77,10 +80,12 @@ const ParticlesBackground = ({ id = "tsparticles" }: { id?: string }) => {
       number: {
         density: {
           enable: true,
-          area: 500,
+          width: 1200, // ✅ Ganti dari 'area'
+          height: 1200, // ✅ Opsional, tergantung efek yang diinginkan
         },
         value: 100,
       },
+
       opacity: {
         value: 0.5,
       },
@@ -92,12 +97,9 @@ const ParticlesBackground = ({ id = "tsparticles" }: { id?: string }) => {
       },
     },
     detectRetina: true,
-  }), []);
+  };
 
-  // Jangan render Particles sampai engine siap
-  return engineReady ? (
-    <Particles id={id} options={options} loaded={particlesLoaded} />
-  ) : null;
+  return engineReady ? <Particles id={id} options={options} /> : null;
 };
 
 export default ParticlesBackground;
