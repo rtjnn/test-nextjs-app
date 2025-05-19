@@ -80,8 +80,8 @@ const ParticlesBackground = ({ id = "tsparticles" }: { id?: string }) => {
       number: {
         density: {
           enable: true,
-          width: 1200, // ✅ Ganti dari 'area'
-          height: 1200, // ✅ Opsional, tergantung efek yang diinginkan
+          width: 1300, // ✅ Ganti dari 'area'
+          height: 1300, // ✅ Opsional, tergantung efek yang diinginkan
         },
         value: 100,
       },
